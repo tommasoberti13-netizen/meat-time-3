@@ -1,0 +1,21 @@
+{
+  "name": "MEAT TIME — BBQ Cooking Planner",
+  "short_name": "MEAT TIME",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101113",
+  "theme_color": "#111214",
+  "description": "Planner personale per le fasi di cottura BBQ.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

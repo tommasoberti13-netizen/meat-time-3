@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111214">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MEAT TIME">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>MEAT TIME — Cooking Planner</title>
+<style>
+:root{color-scheme:dark;--bg:#101113;--panel:#1a1c20;--panel2:#22252b;--line:#30343b;--muted:#9ba1aa;--text:#f4f4f2;--orange:#ff7a24;--orange2:#ff9b50;--green:#70d6a1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#342016 0,transparent 36%),var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.app{max-width:760px;margin:auto;padding:22px 17px 42px}.top{display:flex;justify-content:space-between;align-items:center;margin:6px 0 24px}.brand{font-size:25px;letter-spacing:2.5px;font-weight:850}.sub{color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:4px}.flame{color:var(--orange);font-size:25px}.tabs{display:flex;gap:7px;background:#17191d;padding:5px;border-radius:13px;margin-bottom:18px}.tab{flex:1;padding:11px 7px;background:transparent;color:var(--muted);border-radius:9px;font-weight:650}.tab.active{background:#2b2d32;color:white}.card{background:linear-gradient(145deg,#202227,#191b1f);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 12px 32px #0002}.eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--muted);font-weight:750}.endgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.field label{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;background:#111316;border:1px solid #383c44;color:white;border-radius:10px;padding:12px;outline:none}.field input:focus,.field textarea:focus{border-color:var(--orange)}.hero-time{font-size:36px;font-weight:800;letter-spacing:-1px;margin:8px 0 2px}.orange{color:var(--orange)}.muted{color:var(--muted)}.phase{border:1px solid var(--line);background:#17191d;border-radius:14px;padding:13px;margin-top:10px}.phasehead{display:flex;align-items:center;gap:10px}.num{width:30px;height:30px;border-radius:9px;background:#303238;color:#c9cbd0;display:grid;place-items:center;font-size:11px;font-weight:800}.pname{flex:1;min-width:0}.pname input{font-weight:700;background:transparent;border:0;color:white;width:100%;padding:5px 0;outline:none}.smallbtn{background:#2b2e34;color:#c9cbd0;border-radius:8px;padding:8px 10px}.smallbtn.danger{color:#ff9a84}.phasegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.phasegrid .field input{padding:10px 8px;font-size:13px}.times{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid #2d3036;color:#b9bec6;font-size:12px}.actions{display:flex;gap:9px;flex-wrap:wrap}.primary{background:var(--orange);color:#1a120d;font-weight:800;border-radius:11px;padding:13px 16px}.secondary{background:#2b2e34;color:#f1f1f1;border:1px solid #3a3e46;border-radius:11px;padding:12px 15px;font-weight:650}.full{width:100%}.summary{display:flex;justify-content:space-between;align-items:center;padding:8px 2px}.summary strong{font-size:21px}.recipe{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.recipe:last-child{border-bottom:0}.recipe small{display:block;color:var(--muted);margin-top:4px}.empty{text-align:center;padding:25px 12px;color:var(--muted)}.runphase{border-left:3px solid var(--orange);padding:4px 0 4px 13px;margin:13px 0}.runclock{font-size:42px;font-weight:850;letter-spacing:-1px}.pill{display:inline-block;background:#342316;color:#ffb27c;border-radius:100px;padding:5px 9px;font-size:10px;font-weight:800;letter-spacing:1px}.hint{font-size:12px;line-height:1.5;color:var(--muted)}.hidden{display:none!important}.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#eee;color:#111;padding:11px 16px;border-radius:12px;font-weight:700;box-shadow:0 8px 25px #0008;z-index:5;max-width:90%;text-align:center}.sectiontitle{font-size:17px;font-weight:800;margin:0 0 10px}.rowbetween{display:flex;justify-content:space-between;align-items:center;gap:12px}
+@media(max-width:420px){.phasegrid{grid-template-columns:1fr 1fr}.phasegrid .field:last-child{grid-column:span 2}.hero-time{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><div class="brand">MEAT <span class="orange">TIME</span></div><div class="sub">BBQ COOKING PLANNER</div></div><div class="flame">♨</div></header>
+<nav class="tabs"><button class="tab active" data-tab="planner">Planner</button><button class="tab" data-tab="recipes">Preparazioni</button><button class="tab" data-tab="live">In corso</button></nav>
+<main id="planner">
+<section class="card">
+<div class="rowbetween"><div><div class="eyebrow">ORARIO DI FINE</div><div class="hero-time" id="endDisplay">18:00</div></div><span class="pill">AUTO CALCOLO</span></div>
+<div class="endgrid">
+<div class="field"><label for="endTime">Ora di fine</label><input id="endTime" type="time" value="18:00"></div>
+<div class="field"><label for="recipeName">Nome preparazione</label><input id="recipeName" placeholder="Es. Brisket Texas"></div>
+</div>
+<p class="hint">Imposta l'orario in cui vuoi servire: tutte le fasi vengono calcolate a ritroso in base alle rispettive durate.</p>
+</section>
+<section class="card">
+<div class="rowbetween"><h2 class="sectiontitle">Fasi di cottura</h2><span class="muted" id="phaseCount">0 fasi</span></div>
+<div id="phases"></div>
+<div class="actions" style="margin-top:14px"><button class="secondary" id="addPhase">＋ Aggiungi fase</button><button class="secondary" id="resetPhases">Ripristina esempio</button></div>
+</section>
+<section class="card">
+<div class="summary"><span class="muted">Durata totale</span><strong id="totalDuration">0 h</strong></div>
+<div class="summary"><span class="muted">Inizio preparazione</span><strong id="startDisplay">06:00</strong></div>
+<div class="actions" style="margin-top:12px"><button class="primary full" id="saveRecipe">Salva preparazione</button></div>
+</section>
+</main>
+<main id="recipes" class="hidden">
+<section class="card"><div class="rowbetween"><h2 class="sectiontitle">Le mie preparazioni</h2><span class="pill" id="recipeCount">0 SALVATE</span></div><div id="recipeList"></div></section>
+<p class="hint">Le preparazioni vengono salvate solo su questo dispositivo. Apri una ricetta per caricarla nel planner; puoi modificarla e salvarla nuovamente.</p>
+</main>
+<main id="live" class="hidden">
+<section class="card">
+<div class="eyebrow">SESSIONE DI COTTURA</div><h2 class="sectiontitle" id="liveName" style="margin-top:8px">Nessuna cottura avviata</h2>
+<div class="runclock" id="liveClock">--:--:--</div><div class="muted" id="liveStatus">Carica una preparazione e avvia la cottura.</div>
+<div class="runphase" id="liveCurrent"></div>
+<div class="rowbetween"><span class="muted">Prossima fase</span><strong id="liveNext">—</strong></div>
+<div class="actions" style="margin-top:17px"><button class="primary" id="startCook">Avvia cottura</button><button class="secondary" id="stopCook">Termina</button></div>
+</section>
+<section class="card"><div class="rowbetween"><h2 class="sectiontitle">Notifiche</h2><span class="pill" id="notifState">NON ATTIVE</span></div><p class="hint">Ricevi un avviso quando una fase termina, mentre MEAT TIME è aperta. Su iPhone puoi consentire le notifiche dopo aver aggiunto l'app alla schermata Home.</p><button class="secondary full" id="enableNotifications">Abilita notifiche</button></section>
+</main>
+<footer class="hint" style="text-align:center;padding:12px 5px">MEAT TIME · Fahrenheit °F · Dati salvati sul dispositivo</footer>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const $=id=>document.getElementById(id);
+const defaultPhases=()=>[
+ {name:"Affumicatura",minutes:360,smoker:225,internal:160,note:""},
+ {name:"Wrapping",minutes:180,smoker:250,internal:170,note:""},
+ {name:"Cottura finale",minutes:120,smoker:250,internal:203,note:""},
+ {name:"Riposo",minutes:60,smoker:"",internal:"",note:""}
+];
+let phases=defaultPhases(), recipes=JSON.parse(localStorage.getItem("meattime_recipes")||"[]"), running=false, runStart=0, tick=null, notified=new Set();
+function toast(s){$("toast").textContent=s;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2300)}
+function fmt(min){min=((min%1440)+1440)%1440;return String(Math.floor(min/60)).padStart(2,"0")+":"+String(min%60).padStart(2,"0")}
+function parseTime(s){let [h,m]=s.split(":").map(Number);return h*60+m}
+function calc(){let end=parseTime($("endTime").value||"18:00"),total=phases.reduce((a,p)=>a+(Number(p.minutes)||0),0),cursor=end-total;let rows=phases.map(p=>{let start=cursor;cursor+=Number(p.minutes)||0;return {...p,start,end:cursor}});return {rows,total,start:cursor-total}}
+function duration(m){let h=Math.floor(m/60),mm=m%60;return (h?h+" h ":"")+(mm?mm+" min":(!h?"0 min":"")).trim()}
+function render(){
+ let {rows,total}=calc();$("endDisplay").textContent=$("endTime").value||"18:00";$("totalDuration").textContent=duration(total);$("startDisplay").textContent=fmt(rows.length?rows[0].start:parseTime($("endTime").value));
+ $("phaseCount").textContent=phases.length+" fasi";
+ $("phases").innerHTML=rows.map((p,i)=>`<article class="phase"><div class="phasehead"><div class="num">${String(i+1).padStart(2,"0")}</div><div class="pname"><input aria-label="Nome fase" data-i="${i}" data-k="name" value="${esc(p.name)}"></div><button class="smallbtn" data-move="${i}" data-dir="-1" title="Sposta su" ${i===0?"disabled":""}>↑</button><button class="smallbtn" data-move="${i}" data-dir="1" title="Sposta giù" ${i===phases.length-1?"disabled":""}>↓</button><button class="smallbtn danger" data-del="${i}" title="Elimina">✕</button></div>
+ <div class="phasegrid"><div class="field"><label>Durata (minuti)</label><input type="number" min="0" step="5" data-i="${i}" data-k="minutes" value="${p.minutes}"></div><div class="field"><label>BBQ (°F)</label><input type="number" data-i="${i}" data-k="smoker" value="${p.smoker}" placeholder="Es. 225"></div><div class="field"><label>Interna (°F)</label><input type="number" data-i="${i}" data-k="internal" value="${p.internal}" placeholder="Es. 203"></div></div>
+ <div class="field" style="margin-top:9px"><label>Note della fase</label><textarea rows="2" data-i="${i}" data-k="note" placeholder="Es. Avvolgere in butcher paper...">${esc(p.note||"")}</textarea></div>
+ <div class="times"><span>INIZIO <b>${fmt(p.start)}</b></span><span>FINE <b>${fmt(p.end)}</b></span><span class="orange">${duration(Number(p.minutes)||0)}</span></div></article>`).join("");
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("phases").addEventListener("change",e=>{let i=e.target.dataset.i,k=e.target.dataset.k;if(i===undefined)return;phases[+i][k]=k==="minutes"||k==="smoker"||k==="internal"?(e.target.value===""?"":Number(e.target.value)):e.target.value;render()});
+$("phases").addEventListener("input",e=>{let i=e.target.dataset.i,k=e.target.dataset.k;if(i===undefined)return;if(k==="name"||k==="note"){phases[+i][k]=e.target.value}});
+$("phases").addEventListener("click",e=>{if(e.target.dataset.del!==undefined){phases.splice(+e.target.dataset.del,1);render()}if(e.target.dataset.move!==undefined){let i=+e.target.dataset.move,j=i+Number(e.target.dataset.dir);if(j>=0&&j<phases.length){[phases[i],phases[j]]=[phases[j],phases[i]];render()}}});
+$("endTime").addEventListener("input",render);
+$("addPhase").onclick=()=>{phases.push({name:"Nuova fase",minutes:30,smoker:"",internal:"",note:""});render()};
+$("resetPhases").onclick=()=>{phases=defaultPhases();render()};
+function save(){let name=$("recipeName").value.trim()||"Preparazione senza nome";let recipe={id:Date.now(),name,phases:JSON.parse(JSON.stringify(phases)),savedAt:new Date().toISOString()};let idx=recipes.findIndex(r=>r.name.toLowerCase()===name.toLowerCase());if(idx>=0){recipe.id=recipes[idx].id;recipes[idx]=recipe}else recipes.unshift(recipe);localStorage.setItem("meattime_recipes",JSON.stringify(recipes));renderRecipes();toast("Preparazione salvata")}
+$("saveRecipe").onclick=save;
+function renderRecipes(){$("recipeCount").textContent=recipes.length+" SALVATE";$("recipeList").innerHTML=recipes.length?recipes.map(r=>`<div class="recipe"><div><strong>${esc(r.name)}</strong><small>${r.phases.length} fasi · ${duration(r.phases.reduce((a,p)=>a+(+p.minutes||0),0))}</small></div><div class="actions"><button class="smallbtn" data-load="${r.id}">Apri</button><button class="smallbtn danger" data-remove="${r.id}">✕</button></div></div>`).join(""):`<div class="empty">Nessuna preparazione salvata.<br>Salva una ricetta dal Planner.</div>`}
+$("recipeList").onclick=e=>{let id=Number(e.target.dataset.load||e.target.dataset.remove);if(!id)return;let r=recipes.find(x=>x.id===id);if(e.target.dataset.load){phases=JSON.parse(JSON.stringify(r.phases));$("recipeName").value=r.name;showTab("planner");render();toast("Preparazione caricata")}else{recipes=recipes.filter(x=>x.id!==id);localStorage.setItem("meattime_recipes",JSON.stringify(recipes));renderRecipes()}};
+function showTab(tab){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));["planner","recipes","live"].forEach(x=>$(x).classList.toggle("hidden",x!==tab));if(tab==="recipes")renderRecipes();if(tab==="live")updateLive()}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+function updateLive(){let {rows}=calc(),now=new Date(),mins=now.getHours()*60+now.getMinutes(),current=rows.findIndex(p=>mins>=p.start&&mins<p.end);$("liveName").textContent=$("recipeName").value||"Preparazione attuale";$("liveClock").textContent=now.toLocaleTimeString("it-IT");if(current>=0){let p=rows[current];$("liveStatus").textContent="Fase "+(current+1)+" di "+rows.length;$("liveCurrent").innerHTML=`<strong>${esc(p.name)}</strong><div class="muted">${fmt(p.start)} → ${fmt(p.end)} · BBQ ${p.smoker||"—"} °F · Interna ${p.internal||"—"} °F</div><div class="hint">${esc(p.note||"")}</div>`;$("liveNext").textContent=rows[current+1]?rows[current+1].name+" · "+fmt(rows[current+1].start):"Ultima fase"}else{$("liveStatus").textContent="Fuori dalla fascia oraria pianificata";$("liveCurrent").textContent="Nessuna fase attiva";$("liveNext").textContent=rows[0]?.name||"—"}}
+$("startCook").onclick=()=>{running=true;runStart=Date.now();notified.clear();if(tick)clearInterval(tick);tick=setInterval(()=>{updateLive();checkNotifications()},15000);updateLive();toast("Monitoraggio avviato")};
+$("stopCook").onclick=()=>{running=false;if(tick)clearInterval(tick);$("liveStatus").textContent="Monitoraggio terminato";toast("Cottura terminata")};
+async function enableNotifications(){if(!("Notification"in window)){toast("Notifiche non supportate da questo browser");return}let p=await Notification.requestPermission();$("notifState").textContent=p==="granted"?"ATTIVE":"NON ATTIVE";toast(p==="granted"?"Notifiche abilitate":"Permesso notifiche non concesso")}
+$("enableNotifications").onclick=enableNotifications;
+function checkNotifications(){if(!running||!("Notification"in window)||Notification.permission!=="granted")return;let {rows}=calc(),now=new Date(),mins=now.getHours()*60+now.getMinutes();rows.forEach((p,i)=>{if(mins>=p.end&&mins<p.end+1&&!notified.has(i)){new Notification("MEAT TIME · Fase terminata",{body:p.name+" è terminata. Prossima fase: "+(rows[i+1]?.name||"cottura completata")});notified.add(i)}})}
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+render();renderRecipes();
+</script>
+</body></html>
